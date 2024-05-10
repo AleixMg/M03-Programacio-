@@ -61,6 +61,14 @@ class Alumne {
         this.materia.remove(materia);
     }
     //</editor-fold>
+
+    //Retorna en cadena amb salts de linia l'informació del alumne.
+    //<editor-fold defaultstate="collapsed" desc="Mostrar dades alumne">
+    public String toString() {         
+        return "\n DNI de l'alumne: " + DNI_alumne + "\n" + " Nom: " + nom + "\n" + " Cognom: " + cognom + "\n" + " Edat: " + edat +"\n"+ " Materies: " + materia;
+    }
+    //</editor-fold>
+}
     
     
 
