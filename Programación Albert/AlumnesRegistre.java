@@ -69,6 +69,18 @@ class Alumne {
     }
     //</editor-fold>
 }
+
+//Declararem les variables d'instància de la classe RegistreAlumnes
+class RegistrarAlumnes {         
+    private HashMap<String, Alumne> alumnes;
+     
+    //Farem un constructor per inicialitzar el HashMap.
+    //<editor-fold defaultstate="collapsed" desc="Constructor HashMap">
+    public RegistrarAlumnes() {           
+        alumnes = new HashMap<>();
+    }
+    //</editor-fold>
+
     
     
 
