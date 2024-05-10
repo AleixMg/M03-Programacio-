@@ -79,7 +79,25 @@ class RegistrarAlumnes {
     public RegistrarAlumnes() {           
         alumnes = new HashMap<>();
     }
+    
     //</editor-fold>
+    /Farem un altre metode que serveixi per afegir un nou alumne al registre.
+    //<editor-fold defaultstate="collapsed" desc="Metode afegir nou alumne">
+    public void AfegirAlumne(String DNI_alumne,String nom, String cognom, int edat) {              
+        Alumne noualumne = new Alumne(DNI_alumne, nom, cognom, edat);
+        alumnes.put(noualumne.getNom(), noualumne);
+    }
+    //</editor-fold>
+
+    //Farem un nou metode per poder afegir una materia a un alumne triant-lo amb el seu nom.
+    //<editor-fold defaultstate="collapsed" desc="Metode afegir materia">
+    public void AfegirMateriaAlumne(String NomAlumne, String materia) {           
+        Alumne alumne = alumnes.get(NomAlumne);
+        //si alumne no te valor null, és a dir hi  ha un registre, afegira la materia  
+        if (alumne != null) {
+            alumne.NovaMateria(materia);
+        }
+    }
 
     
     
