@@ -26,4 +26,27 @@ class Alumne {
      }
      //</editor-fold>
     
+    //Farem uns metodes d'accés a les varibles de l'alumne amb els getters.
+    //<editor-fold defaultstate="collapsed" desc="Getters">
+    public String getDNI_alumne() {       
+        return this.DNI_alumne;
+    }
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public String getCognom() {
+        return this.cognom;
+    }
+
+    public int getEdat() {
+        return this.edat;
+    }
+
+    public ArrayList<String> getMateria() {
+        return this.materia;
+    }
+    //</editor-fold>
+    
 
