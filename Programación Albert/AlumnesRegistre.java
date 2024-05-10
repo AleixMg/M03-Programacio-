@@ -98,7 +98,42 @@ class RegistrarAlumnes {
             alumne.NovaMateria(materia);
         }
     }
+    //</editor-fold>
+    
+    //Farem un nou metode per poder borrar una materia a un alumne triant-lo amb els seu nom.
+    //<editor-fold defaultstate="collapsed" desc="Metode eliminar materia">
+    public void EliminarMateriaAlumne(String NomAlumne, String materia) {
+        Alumne alumne = alumnes.get(NomAlumne);
+        //si alumne no te valor null, és a dir hi  ha un registre, eliminara  la materia 
+        if (alumne != null) {
+            alumne.BorrarMateria(materia);
+        }
+    }
+    //</editor-fold>
+    
+    //Fem un metode  per mostrar les materies dels alumnes
+    //<editor-fold defaultstate="collapsed" desc="Metode mostrar materia alumne">
+    public void mostrarMateria(String NomAlumne) {
+        Alumne alumne = alumnes.get(NomAlumne);
+        //si alumne no te valor null, és a dir hi  ha un registre, mostrara la materia  amb la resta de dades
+        if (alumne != null) {
+            System.out.println("Materies de l'alumne " + alumne.getDNI_alumne()+ " "+ alumne.getNom() + " " + alumne.getCognom() + ":");
+            System.out.println(alumne.getMateria());
+        }
+    }
+    //</editor-fold>
+    
+    //Tenim un altre metode per mostrar la informació de cada alumne registrat
+    //<editor-fold defaultstate="collapsed" desc="Metode mostrar alumnes registrats">
+    public void MostrarAlumnes() {                       
+        System.out.println("\n Tots els alumnes registrats:");
+        for (Alumne alumne : alumnes.values()) {
+            System.out.println(alumne);
+        }
+    }
+    //</editor-fold>
 
+}
     
     
 
