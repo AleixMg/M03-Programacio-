@@ -132,7 +132,138 @@ class RegistrarAlumnes {
         }
     }
     //</editor-fold>
+}
 
+
+//Definim les constants per mostrar els missatges del menu,
+public class AlumnesRegistre {                         
+    private static final String MSG_1 = "Tria una de les diferents opcions:";
+    private static final String MSG_2 = "1.Registrar un alumne nou";
+    private static final String MSG_3 = "2.Afegir una nova materia a un alumne previament registrat";
+    private static final String MSG_4 = "3.Eliminar matèria d'un alumne previament registrat";
+    private static final String MSG_5 = "4.Mostrar tots els alumnes registrats"; 
+    private static final String MSG_6 = "5.Mostrar les materies d'un alumne previament registrat";
+    private static final String MSG_7 = "6.Surtir del programa";
+    private static final String MSG_8 = "Selecciona l'opcio que vulguis:";
+    private static final String MSG_9 = "Gracies per utilitzar el programa, tingui un bon dia :) ";
+    private static final String MSG_10 = "Introdueix el nom de l'alumne:";
+    private static final String MSG_11 = "\n*****************************************";
+    private static final String MSG_12 = "*****************************************";
+     private static final String MSG_13 = "Vols tornar al menú o tanquem el programa?(0 per conitunar / 1 per tancar): ";
+    //L'utilitzarem al final per fer un bucle amb while i poder sortir quan es posi l'opció 6
+    private static int opcions;
+    
+    
+    public static void main(String[] args) {
+        //creem una instancia de la classe RegistrarAlumnes 
+        RegistrarAlumnes registre = new RegistrarAlumnes();
+        // També creem una altre instancia de l'objecte scaner per a que l'usuari posi les seves opcions
+        Scanner sc = new Scanner(System.in);
+        
+        //fem un do while que si surt que escogim la opcio 6 canvia la variable i finalitza el programa.
+        do{
+            System.out.println(MSG_11);
+            System.out.println(MSG_1);
+            System.out.println(MSG_12);
+            System.out.println(MSG_2);
+            System.out.println(MSG_3);
+            System.out.println(MSG_4);
+            System.out.println(MSG_5);
+            System.out.println(MSG_6);
+            System.out.println(MSG_7);
+            System.out.println(MSG_8);
+        
+            int opcio = sc.nextInt();
+            sc.nextLine();
+            //Amb el switch case triarem les opcions
+            switch (opcio) {                         
+                case 1 -> {
+                    System.out.print("DNI: ");
+                    String numero_DNI = sc.nextLine();
+                    System.out.print("Nom: ");
+                    String nom = sc.nextLine();
+                    System.out.print("Cognom: ");
+                    String cognom = sc.nextLine();
+                    System.out.print("Edat: ");
+                    int edat = sc.nextInt();
+                    registre.AfegirAlumne(numero_DNI, nom, cognom, edat);
+                    //Li preguntem al usuari si vol tancar el programa o continuar 
+                    System.out.print(MSG_13);
+                    int continuar = sc.nextInt();
+                    if (continuar == 1 ){
+                        System.out.println(MSG_9);   
+                        opcions = 6;   
+                    }else {
+                        opcions=0;
+                    }
+                }
+                case 2 -> {
+                    System.out.print(MSG_10);
+                    String NomAlumne = sc.nextLine();
+                    System.out.print("Intrdodueix la nova materia: ");
+                    String materiaNova = sc.nextLine();
+                    registre.AfegirMateriaAlumne(NomAlumne, materiaNova);
+                    //Li preguntem al usuari si vol tancar el programa o continuar 
+                    System.out.print(MSG_13);
+                    int continuar = sc.nextInt();
+                    if (continuar == 1 ){
+                        System.out.println(MSG_9);   
+                        opcions = 6;   
+                    }else {
+                        opcions=0;
+                    }
+                }
+                case 3 -> {
+                    System.out.print(MSG_10);
+                    String NomAlumne = sc.nextLine();
+                    sc.nextLine(); // Netegem el buffer
+                    System.out.print("Introdueix la materia que vols eliminar: ");
+                    String materiaEliminada = sc.nextLine();
+                    registre.EliminarMateriaAlumne(NomAlumne, materiaEliminada);
+                    //Li preguntem al usuari si vol tancar el programa o continuar 
+                    System.out.print(MSG_13);
+                    int continuar = sc.nextInt();
+                    if (continuar == 1 ){
+                        System.out.println(MSG_9);   
+                        opcions = 6;   
+                    }else {
+                        opcions=0;
+                    }
+                }
+                case 4 -> {
+                    registre.MostrarAlumnes();
+                    //Li preguntem al usuari si vol tancar el programa o continuar 
+                    System.out.print(MSG_13);
+                    int continuar = sc.nextInt();
+                    if (continuar == 1 ){
+                        System.out.println(MSG_9);   
+                        opcions = 6;   
+                    }else {
+                        opcions=0;
+                    }
+                }
+                case 5 -> {
+                    System.out.print(MSG_10);
+                    String NomAlumne = sc.nextLine();
+                    registre.mostrarMateria(NomAlumne); 
+                    //Li preguntem al usuari si vol tancar el programa o continuar 
+                    System.out.print(MSG_13);
+                    int continuar = sc.nextInt();
+                    if (continuar == 1 ){
+                        System.out.println(MSG_9);   
+                        opcions = 6;   
+                    }else {
+                        opcions=0;
+                    }
+                }
+                case 6 -> {
+                    System.out.println(MSG_9);   
+                    opcions = 6;
+                }
+            }
+            
+        }while(opcions != 6);
+    }
 }
     
     
