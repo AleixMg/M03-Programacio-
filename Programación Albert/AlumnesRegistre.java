@@ -48,5 +48,19 @@ class Alumne {
         return this.materia;
     }
     //</editor-fold>
+
+    //Farem un metodes per gestionar les materies afegir/eliminar materia.
+    //<editor-fold defaultstate="collapsed" desc="Metode afegir materia">
+    public void NovaMateria(String materia) {      
+        this.materia.add(materia);
+    }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Metode borrar la materia">
+    public void BorrarMateria(String materia) {
+        this.materia.remove(materia);
+    }
+    //</editor-fold>
+    
     
 
