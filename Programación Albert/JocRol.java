@@ -84,3 +84,11 @@ import org.w3c.dom.NodeList;
     }
     //</editor-fold>
 }
+
+//declarem la nova clase per gestionar la aventura(als personatges)
+class GestorAventuras {
+    //declarem una llista de personatges
+    private List<Personaje> personajes;
+    //declarem el Scanner per després el usuari pugui introduir les dades 
+    private Scanner scanner;
+    
