@@ -139,3 +139,24 @@ class GestorAventuras {
         }
     }
     //</editor-fold>
+    //Fem un metode per poder afegir personatges manualment
+    //<editor-fold defaultstate="collapsed" desc="Metode afegir personatges manualent">
+    public void agregarPersonajeManualmente() {
+        System.out.print("Nom del personatge: ");
+        String nom = scanner.nextLine();
+        System.out.print("Nivels del personatge: ");
+        int nivell = scanner.nextInt();
+        System.out.print("Punts de vida del personatge: ");
+        int puntsVida = scanner.nextInt();
+        System.out.print("Punts de mana del personatge: ");
+        int puntsMana = scanner.nextInt();
+        System.out.print("Tipus d'arma del personatge: ");
+        String arma = scanner.next();
+        System.out.print("Tipus d'armadura del personatge: ");
+        String armadura = scanner.next();
+        // Per limpiar el buffer
+        scanner.nextLine(); 
+        personajes.add(new Personaje(nom,nivell,puntsVida,puntsMana,arma,armadura));
+        System.out.println("Personatge afegit correctamente.");
+    }
+    //</editor-fold>
