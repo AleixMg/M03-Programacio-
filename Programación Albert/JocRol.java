@@ -172,3 +172,84 @@ class GestorAventuras {
         }
     }
     //</editor-fold>
+ 
+    //Fem un metode per els personatges
+    //<editor-fold defaultstate="collapsed" desc="Metode per modificar personatges">
+    public void modificarPersonaje() {
+        System.out.print("Posa el nom del personatge que vulgui modificar: ");
+        String nombre = scanner.nextLine();
+        //Amb el for recorrem tots el atributs del personatge
+        for (Personaje personaje : personajes) {
+            if (personaje.getNom().equalsIgnoreCase(nombre)) {
+                System.out.println("Personatge identificat, posi els nous atributs:");
+                //Preguntem si vol cambiar aquest parametre o no
+                System.out.println("\nVols posar-li un nou nom?(0 per si / 1 per no):");
+                int nouNomconf = scanner.nextInt();
+                if (nouNomconf == 0){
+                    System.out.print("Nou nom: ");               
+                    String nouNom = scanner.next();
+                    personaje.setNom(nouNom);
+                }else{
+                    System.out.print("El nom es queda igual ");
+                }
+                //Preguntem si vol cambiar aquest parametre o no
+                System.out.println("\nVols posar-li un nou nivell?(0 per si / 1 per no):");
+                int nouNivellconf = scanner.nextInt();
+                if (nouNivellconf == 0){
+                    System.out.print("\nNou nivell: ");
+                    int nouNivell = scanner.nextInt();
+                    personaje.setNivell(nouNivell);
+                }else{
+                   System.out.print("El nivell es queda igual ");
+                }  
+                //Preguntem si vol cambiar aquest parametre o no
+                System.out.println("\nVols posar-li nous punts de vida?(0 per si / 1 per no):");
+                int nouVidaconf = scanner.nextInt();
+                if (nouVidaconf == 0){
+                    System.out.print("\nNous punts de Vida: ");
+                    int nousPuntsVida = scanner.nextInt();
+                    personaje.setPuntsVida(nousPuntsVida);
+                }else{
+                   System.out.print("Els punts de vida es queden igual ");
+                }  
+                //Preguntem si vol cambiar aquest parametre o no
+                System.out.println("\nVols posar-li nous punts de mana?(0 per si / 1 per no):");
+                int nouManaconf = scanner.nextInt();
+                if (nouManaconf == 0){
+                    System.out.print("\nNous punts de mana: ");
+                    int nousPuntsMana = scanner.nextInt();
+                    personaje.setPuntsMana(nousPuntsMana);
+                }else{
+                   System.out.print("Els punts de mana es queden igual ");
+                }
+                //Preguntem si vol cambiar aquest parametre o no
+                System.out.println("\nVols posar-li un nou tipus d'arma?(0 per si / 1 per no):");
+                int nouArmaconf = scanner.nextInt();
+                if (nouArmaconf == 0){
+                    System.out.print("\nNova Arma: ");
+                    String novaArma = scanner.next();
+                    personaje.setArma(novaArma);
+                }else{
+                   System.out.print("El tipus d'arma es queda igual ");
+                }            
+                //Preguntem si vol cambiar aquest parametre o no
+                System.out.println("\nVols posar-li nou tipus d'armadura?(0 per si / 1 per no):");
+                int nouArmaduraconf = scanner.nextInt();
+                if (nouArmaduraconf == 0){
+                    System.out.print("\nNova  Armadura: ");
+                    String novaArmadura = scanner.next();
+                    personaje.setArmadura(novaArmadura);
+                }else{
+                   System.out.print("El tipus d'arma es queda igual ");
+                } 
+                // Per limpiar el buffer
+                scanner.nextLine(); 
+                System.out.println("Personaje modificado correctamente.");
+                return;
+            }
+        }
+        System.out.println("Personatge no trobat.");
+    }
+    //</editor-fold>
+
+}
