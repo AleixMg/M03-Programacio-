@@ -91,4 +91,14 @@ class GestorAventuras {
     private List<Personaje> personajes;
     //declarem el Scanner per després el usuari pugui introduir les dades 
     private Scanner scanner;
+
+    //Declarem un constructor de la classe de GestorAventuras per inicialitzar la llista de abans 
+    //<editor-fold defaultstate="collapsed" desc="Truca de metodes GestorAventuras">
+    public GestorAventuras() {
+        this.personajes = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
+        //Truquem al metode per carregar l'arxiu XML que hem guardat en una carpeta que abans haviem creat dins del projecte anemadoa files on hem guardat el XML
+        carregarPersonatgesPredefinits("files/personatges.xml");
+    }
+    //</editor-fold>
     
