@@ -253,3 +253,84 @@ class GestorAventuras {
     //</editor-fold>
 
 }
+
+//Posem per ultim el main(el meu cas JocRol) amb els misatges del menu
+public class JocRol {
+    //Declarem aquesta variable per sortit del while
+    private static int surt;
+    private static final String MSG_1 = "\n******************Joc de ROl Terra d'or***********************";
+    private static final String MSG_6 = "******************Joc de ROl Terra d'or***********************";
+    private static final String MSG_2 = "1.Afegir un personatge nou";
+    private static final String MSG_3 = "2.Mostrar els pesonatges";
+    private static final String MSG_4 = "3.Modificar un personatge";
+    private static final String MSG_5 = "4.Sortir";
+    private static final String MSG_7 = "Selecciona l'opcio que vulguis:";
+    private static final String MSG_8 = "Gracies per jugar a Terra d'or :) ";
+    private static final String MSG_9 = "Vols tornar al menú o tanquem el programa?(0 per conitunar / 1 per tancar): ";
+    
+    public static void main(String[] args) {
+        //creem una instancia de la classe GestorAventuras 
+        GestorAventuras gestor = new GestorAventuras();
+        // També creem una altre instancia de l'objecte scaner per a que l'usuari posi les seves opcions
+        Scanner sc = new Scanner(System.in);
+        //Fem el do while per a que sempre mostri el menu menys quan l'usuari posi l'opcio de sortit
+        do {
+            System.out.println(MSG_1);
+            System.out.println(MSG_2);
+            System.out.println(MSG_3);
+            System.out.println(MSG_4);
+            System.out.println(MSG_5);
+            System.out.println(MSG_6);
+            System.out.print(MSG_7);
+            //La variable per al switch case 
+            int opcion = sc.nextInt();
+            // Per limpiar el buffer
+            sc.nextLine(); 
+            //Amb el switch case triarem les opcion
+            switch (opcion) {
+                case 1 ->{ 
+                    gestor.agregarPersonajeManualmente();
+                    //Li preguntem al usuari si vol tancar el programa o continuar 
+                    System.out.print(MSG_9);
+                    int continuar = sc.nextInt();
+                    if (continuar == 1 ){
+                        System.out.println(MSG_8);   
+                        surt = 4;   
+                    }else {
+                        surt=0;
+                    }
+                }
+                case 2 -> {
+                    gestor.mostrarPersonajes();
+                    //Li preguntem al usuari si vol tancar el programa o continuar 
+                    System.out.print(MSG_9);
+                    int continuar = sc.nextInt();
+                    if (continuar == 1 ){
+                        System.out.println(MSG_8);   
+                        surt = 4;   
+                    }else {
+                        surt=0;
+                    }
+                }
+                case 3 -> {
+                    gestor.modificarPersonaje();
+                    //Li preguntem al usuari si vol tancar el programa o continuar 
+                    System.out.print(MSG_9);
+                    int continuar = sc.nextInt();
+                    if (continuar == 1 ){
+                        System.out.println(MSG_8);   
+                        surt = 4;   
+                    }else {
+                        surt=0;
+                    }
+                }
+                case 4 -> {
+                    surt = 4;
+                    System.out.println(MSG_8);
+                }
+                default -> System.out.println("Opción no válida. Inténtalo de nuevo.");
+            }
+        }while(surt != 4);
+    }
+}
+
