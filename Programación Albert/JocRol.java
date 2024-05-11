@@ -101,4 +101,41 @@ class GestorAventuras {
         carregarPersonatgesPredefinits("files/personatges.xml");
     }
     //</editor-fold>
-    
+ 
+    //Ara creem el metode per carregar el personatges desde l'arxiu XML de la carpeta files.
+    //<editor-fold defaultstate="collapsed" desc="Metode per carregar el personatges desde el XML">
+    public void carregarPersonatgesPredefinits(String archivoXML) {
+         try {
+            //Primer necesitem crear l'objecte File utilitzant la ruta on hem guardat l'arxiu.
+            File arxiuXML = new File("files/personatges.xml");
+            //Després instanciem l'objecte DocumentBuilderFactory 
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Continuem creant el DocumentBuilder
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(arxiuXML);
+            doc.getDocumentElement().normalize();
+            //Després obtenim la llista de personatges desde el XML, o dit d'una altre forma els nodes del document XML.
+            NodeList LLpersonatges = doc.getElementsByTagName("personatge");
+            //Continuem iterant la llista de personatges
+            for (int i = 0; i < LLpersonatges.getLength(); i++) {
+                Node n = LLpersonatges.item(i);
+                //Hem de verificar si el node és ELEMENT_NODE
+                if (n.getNodeType() == Node.ELEMENT_NODE) {
+                    Element registre = (Element) n;
+                    //Per poder afegirlos al codi extraiem els valors dels personatges amb els mateix noms que hi ha en el document XML i els guardem com a variables.
+                    String nom = registre.getElementsByTagName("nom").item(0).getTextContent();
+                    int nivell = Integer.parseInt(registre.getElementsByTagName("nivell").item(0).getTextContent());
+                    int puntsVida = Integer.parseInt(registre.getElementsByTagName("puntsDeVida").item(0).getTextContent());
+                    int puntsMana = Integer.parseInt(registre.getElementsByTagName("puntsDeMana").item(0).getTextContent());
+                    String arma = registre.getElementsByTagName("arma").item(0).getTextContent();
+                    String armadura = registre.getElementsByTagName("armadura").item(0).getTextContent();
+                    //Per ultim amb les variables que els hem guardat els afegim a Personaje.
+                    personajes.add(new Personaje(nom, nivell, puntsVida, puntsMana, arma, armadura));
+                   
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //</editor-fold>
