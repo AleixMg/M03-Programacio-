@@ -160,3 +160,15 @@ class GestorAventuras {
         System.out.println("Personatge afegit correctamente.");
     }
     //</editor-fold>
+ 
+    //Fem un metode per mostrar els personatges que hi ha 
+    //<editor-fold defaultstate="collapsed" desc="Metode mostrar personatges">
+    public void mostrarPersonajes() {
+        System.out.println("\nLista de personajes:");
+        for (Personaje personatge : personajes) {
+            System.out.println("Nom: " + personatge.getNom() + "\tNivell: " + personatge.getNivel() +
+                    "\tPuntos de vida: " + personatge.getPuntsVida() + "\tPuntos de mana: " + personatge.getPuntsMana()+ 
+                    "\tTipus arma: " + personatge.getArma()+ "\tTipus armadura: " + personatge.getArmadura());
+        }
+    }
+    //</editor-fold>
