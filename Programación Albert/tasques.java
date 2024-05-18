@@ -78,3 +78,27 @@ class GestioTasques {
         this.scanner = new Scanner(System.in);
     }
     //</editor-fold>
+    
+    //Fem un metode per carregar les tasques
+    //<editor-fold defaultstate="collapsed" desc="Metode càrrega de tasques">
+    public void carregarTasques(String Fitxer) {
+        //Amb un BufferedReader y la variable Fitxer( es la variable que utilitzarem per a que l'usuari posi el nom del fitxer que vol editar) podem llegir i carregar el fitxer 
+        try (BufferedReader br = new BufferedReader(new FileReader(Fitxer))) {
+            String llegirLinia;
+            //Amb un while podem recorre l'arxiu amb la varibale llegirLinea
+            while ((llegirLinia = br.readLine()) != null) {
+                String[] camps = llegirLinia.split(",");
+                //Asignem a  cada registre laa variable corresponent, utilitzem unes comes per a delimitar y afegir a les variables
+                String titol = camps[0];
+                String descripcio = camps[1];
+                LocalDate data = LocalDate.parse(camps[2]);
+                String estat = camps[3];
+                //Amb un .add afegim els registres
+                tasques.add(new Tasca(titol, descripcio, data, estat));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //</editor-fold>
+
