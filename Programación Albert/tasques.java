@@ -187,3 +187,46 @@ class GestioTasques {
         System.out.println("No hi ha cap tasca amb aquest titol.");
     }
     //</editor-fold>
+
+    //Fem un metode per eliminar les tasques
+    //<editor-fold defaultstate="collapsed" desc="Metode eliminar tasques">    
+    public void eliminarTasca() {
+        System.out.print("Titol de la tasca a eliminar: ");
+        String titol = scanner.nextLine();
+        for (int x = 0; x < tasques.size(); x++) {
+            //Fem com el metode de modificar les tasques , primer l'usuari posara el nom de la tasca a eliminar i amb un for ho cerca i la eliminem.
+            if (tasques.get(x).getTitol().equalsIgnoreCase(titol)) {
+                tasques.remove(x);
+                System.out.println("La tasca s'ha eliminat correctament.");
+                return;
+            }
+        }
+        System.out.println("No hi ha cap tasca amb aquest titol.");
+    }
+    //</editor-fold>
+    
+    //Fem un metode per visualitzar les tasques
+    //<editor-fold defaultstate="collapsed" desc="Metode visualitzar tasques">     
+    public void visualitzarTasques() {
+        //ho declarem per posar un text amb el numero de la tasca farem que sigui un valor que s'autocincrementi amb el for
+        int numero = 0;
+        System.out.println("Llista de les tasques:");
+        for (Tasca tasca : tasques) {
+            numero = numero + 1;
+            System.out.println("--------------------");
+            System.out.println("Tasca numero:"+ numero);
+            System.out.println("--------------------");
+            System.out.println("Titol: " + tasca.getTitol() + "\nDescripcio: " + tasca.getDescripcio() +
+                               "\nData de venciment: " + tasca.getData() + "\nEstat: " + tasca.getEstat());
+        }
+    }
+    //</editor-fold>
+    
+    //Fem un metode per sortir del programa quan l'usuari posi aquesta opcio
+    //<editor-fold defaultstate="collapsed" desc="Metode sortir del programa"> 
+    public void sortir() {
+        scanner.close();
+        System.exit(0);
+    }
+    //</editor-fold>
+}
