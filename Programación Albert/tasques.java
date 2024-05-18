@@ -117,3 +117,73 @@ class GestioTasques {
         }
     }
     //</editor-fold>
+
+    //Fem un metode per afegir les tasques
+    //<editor-fold defaultstate="collapsed" desc="Metode afegir tasques">
+    public void afegirTasca() {
+        //Els afegim aumb un scanner
+        System.out.print("Introdueixi el titol de la tasca: ");
+        String titol = scanner.nextLine();
+        System.out.print("Introdueixi la descripcio de la tasca: ");
+        String descripcio = scanner.nextLine();
+        System.out.print("Introdueixi la data de venciment (els parametres han de ser YYYY-MM-DD): ");
+        LocalDate data = LocalDate.parse(scanner.nextLine());
+        System.out.print("Introdueixi el estat de la tasca (pendent, en curs, completada): ");
+        String estat = scanner.nextLine();
+        //Amb un .add afegim el nous registres
+        tasques.add(new Tasca(titol, descripcio, data, estat));
+        System.out.println("La tasca s'ha afegit correctament.");
+    }
+    //</editor-fold>
+
+    //Fem un metode per modificar les tasques
+    //<editor-fold defaultstate="collapsed" desc="Metode modificar tasques">
+    public void modificarTasca() {
+        System.out.print("Titol de la tasca que voleu modificar: ");
+        String titol = scanner.nextLine();
+        for (Tasca tasca : tasques) {
+            //per a modificar ho farem primer que l'usuari posi el nom del titol de la tasca i després ho buuusquem per aquest.
+            if (tasca.getTitol().equalsIgnoreCase(titol)) {
+                //Preguntem abans si vol modificar aquest parametre o no
+                System.out.print("Vols un nou titol? (Introdueix SI o NO): ");
+                String canviTitol = scanner.nextLine();
+                //si posa si es modificara, en cas de posar quasevol altre cosa el deixara igual 
+                if (canviTitol.equalsIgnoreCase("SI")) {
+                    System.out.print("Introdueix el nou titol: ");
+                    String nouTitol = scanner.nextLine();
+                    tasca.setTitol(nouTitol);
+                }
+                //Preguntem abans si vol modificar aquest parametre o no
+                System.out.print("Vols una nova descripcio? (Introdueix SI o NO): ");
+                String canviDescripcio = scanner.nextLine();
+                //si posa si es modificara, en cas de posar quasevol altre cosa el deixara igual
+                if (canviDescripcio.equalsIgnoreCase("SI")) {
+                    System.out.print("Introdueix la nova descripcio: ");
+                    String novaDescripcio = scanner.nextLine();
+                    tasca.setDescripcio(novaDescripcio);
+                }
+                //Preguntem abans si vol modificar aquest parametre o no
+                System.out.print("Vols una nova data de venciment? (Introdueix SI o NO): ");
+                String canviData = scanner.nextLine();
+                //si posa si es modificara, en cas de posar quasevol altre cosa el deixara igual
+                if (canviData.equalsIgnoreCase("SI")) {
+                    System.out.print("Introdueix la nova data de venciment (YYYY-MM-DD): ");
+                    LocalDate novaDataVenciment = LocalDate.parse(scanner.nextLine());
+                    tasca.setData(novaDataVenciment);
+                }
+                //Preguntem abans si vol modificar aquest parametre o no
+                System.out.print("Vols un nou estat? (Introdueix SI o NO): ");
+                String canviEstat = scanner.nextLine();
+                //si posa si es modificara, en cas de posar quasevol altre cosa el deixara igual
+                if (canviEstat.equalsIgnoreCase("SI")) {
+                    System.out.print("Introdueix el nou estat (pendent, en curs, completada): ");
+                    String nouEstat = scanner.nextLine();
+                    tasca.setEstat(nouEstat);
+                }
+                System.out.println("La tasca s'ha modificat correctament.");
+                return;
+            }
+        }
+        System.out.println("No hi ha cap tasca amb aquest titol.");
+    }
+    //</editor-fold>
