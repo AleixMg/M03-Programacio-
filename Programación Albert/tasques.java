@@ -64,3 +64,17 @@ class Tasca {
     }
     //</editor-fold>
 }
+//declarem la nova clase per gestionar les Tasques(afegir tasques, modificarles, borrarles, o mostrarles)
+class GestioTasques {
+    //declarem una llista per les tasques
+    private List<Tasca> tasques;
+    //declarem el Scanner per després el usuari pugui introduir les dades 
+    private Scanner scanner;
+
+    //Declarem un constructor de la classe de GestorAventuras per inicialitzar la llista de abans 
+    //<editor-fold defaultstate="collapsed" desc="Truca de metodes GestioTasques">
+    public GestioTasques() {
+        this.tasques = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
+    }
+    //</editor-fold>
