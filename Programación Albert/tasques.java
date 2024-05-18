@@ -102,3 +102,18 @@ class GestioTasques {
     }
     //</editor-fold>
 
+    //Fem un metode per desar les tasques
+    //<editor-fold defaultstate="collapsed" desc="Metode desar les tasques">
+    public void desarTasques(String Fitxer) {
+        //Abans per carregar ell fitxer hem utilitzar un BufferedReader, ara per editar-ho utilitzem un BufferedWriter
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Fitxer))) {
+            for (Tasca tasca : tasques) {
+                 //Ho escriivim amb el toString les lines de text.
+                bw.write(tasca.toString());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //</editor-fold>
