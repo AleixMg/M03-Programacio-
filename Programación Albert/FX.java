@@ -25,3 +25,16 @@ public class FX extends Application {
             // Per mostrar l'alerta
             alert.showAndWait();
         });
+        
+        // Creem el layout principal i afegim el botó
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+
+        // Creem una escena amb el layout principal( la caixa amb el boto)
+        Scene scene = new Scene(root, 450, 300);
+
+        // Configurem l'escenari principal (la finestra)
+        Finestra1.setTitle("Aplicació en JavaFX, salutació");
+        Finestra1.setScene(scene);
+        Finestra1.show();
+    }
