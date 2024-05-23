@@ -38,3 +38,9 @@ public class FX extends Application {
         Finestra1.setScene(scene);
         Finestra1.show();
     }
+
+    //el main per executar-ho
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
