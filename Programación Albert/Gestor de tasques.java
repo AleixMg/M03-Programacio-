@@ -56,4 +56,69 @@ class Tasca {
 	//</editor-fold>
 }
 
+//Declarem la nova clase per gestionar les tasques
+class GestorTasques {
+	
+	private static final String MSG_1 = "baixa";
+	private static final String MSG_2 = "mitjana";
+	private static final String MSG_3 = "alta";
+	private HashMap<String, ArrayList<Tasca>> llistaPrioritat;
+	private HashMap<Integer, Tasca> tasques;
+	private Scanner scanner;
+
+	public GestorTasques() {
+    		llistaPrioritat = new HashMap<>();
+    		llistaPrioritat.put(MSG_1, new ArrayList<>());
+    		llistaPrioritat.put(MSG_2, new ArrayList<>());
+    		llistaPrioritat.put(MSG_3, new ArrayList<>());
+    		tasques = new HashMap<>();
+    		scanner = new Scanner(System.in);
+	}
+	
+	//Metode per afegir la tasca a partir de la ID que digui el usuari que vulgui modificar 
+	public void afegirTasca(String descripcio, String prioritat) {
+    		Tasca tasca = new Tasca(descripcio, prioritat);
+    		llistaPrioritat.get(prioritat).add(tasca);
+    		tasques.put(tasca.getID(), tasca);
+	}
+
+	//Metode per marcar la tasca a partir de la ID que digui el usuari que vulgui modificar
+	public void marcarTascaCompletada(int idTasca) {
+    		Tasca tasca = tasques.get(idTasca);
+		if (tasca != null) {
+      			tasca.marcarTascaCompletada();
+    		}	
+	}
+
+	//Metode per esborrar la tasca a partir de la ID que digui el usuari que vulgui modificar
+	public void esborrarTasca(int idTasca) {
+    		Tasca tasca = tasques.remove(idTasca);
+    		if (tasca != null) {
+        		String prioritat = tasca.getPrioritat();
+        		llistaPrioritat.get(prioritat).remove(tasca);
+    		}
+	}
+	//Metode per afegir la tasca 
+	public void mostrarTotesLesTasques() {
+    	System.out.println("Totes les tasques:");
+    		for (Tasca tasca : tasques.values()) {
+        		System.out.println(tasca);
+    		}
+	}
+	
+	//Metode per afegir la tasca per ordre de prioritat
+	public void mostrarTasquesPerPrioritat(String prioritat) {
+    	System.out.println("Tasques de prioritat " + prioritat + ":");
+    		for (Tasca tasca : llistaPrioritat.get(prioritat)) {
+        		System.out.println(tasca);
+    		}
+	}
+	
+	//metode per sortir del programa 
+	public void sortir() {
+    		scanner.close();
+    		System.exit(0);
+	}
+}
+
 
