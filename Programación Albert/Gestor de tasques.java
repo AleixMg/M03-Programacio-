@@ -120,5 +120,122 @@ class GestorTasques {
     		System.exit(0);
 	}
 }
+//Posem per ultim el main(el meu cas TaskManagement) amb els misatges del menu
+public class TaskManagement {
+
+	//Declarem aquesta variable per sortit del while
+	private static String surt;
+	private static final String MSG_1 = "********GESTOR DE TASQUES********";
+	private static final String MSG_2 = "1.Afegir una nova tasca";
+	private static final String MSG_3 = "2.Tasca com a completada";
+	private static final String MSG_4 = "3.Borra una tasca";
+	private static final String MSG_5 = "4.Mostra les tasques";
+	private static final String MSG_6 = "5.Mostra les tasques per prioritat";
+	private static final String MSG_7 = "6.Surt del programa";
+	private static final String MSG_8 = "Selecciona una opcio: ";
+	private static final String MSG_12 = "Error en dades posi un número no una lletra ni un altre carcater";
+	private static final String MSG_13 = "Vols soritr del programa? (Introdueix SI o NO): ";
+	private static final String MSG_14 = "Sortint del programa i guardant arxiu...Gracies per utilitzar el nostre gestor de tasques :) ";
+    
+	public static void main(String[] args) {
+	GestorTasques gestor = new GestorTasques();
+    	Scanner sc = new Scanner(System.in);
+    	// la variable booleana correcte es per validar que s'hi introdueixin números
+    	boolean correcte;
+    	//Declarem també la variable opcio per a que després amb el switch case pugui escollir l'usuari l'opcio que vulgui.
+    	int opcio = 0;
+
+
+
+    	//amb un while (true) fem que sempre entrem al bucle del while i l'unica forma de sortir del programa sigui amb l'opció 5.
+    	while (true) {
+        	System.out.println(MSG_1);
+        	System.out.println(MSG_2);
+        	System.out.println(MSG_3);
+        	System.out.println(MSG_4);
+        	System.out.println(MSG_5);
+        	System.out.println(MSG_6);
+        	System.out.println(MSG_6);
+        	System.out.println(MSG_1);
+        	//Fem un do while de forma que si l'usuari no posa un número i posa qualsevol altre carracter el programa no finalitzara fins que posi un, despres el swicth confirmara si es una acció valida  o no
+        	do{
+        	System.out.print(MSG_8);
+        	correcte=sc.hasNextInt();
+        	if(correcte){
+            	opcio = sc.nextInt();
+        	}else{
+            	sc.next();
+            	System.out.println(MSG_12);
+        	}
+        	}while(!correcte);
+        	sc.nextLine();
+       	 
+        	//fem un switch case pper a que l'usuari pugui escollir una opció
+        	switch (opcio) {
+            	case 1 -> {
+                	System.out.print("Descripcio de la tasca: ");
+                	String descripcio = sc.nextLine();
+                	System.out.print("Prioritat: baixa/mitjana/alta: ");
+                	String prioritat = sc.nextLine().toLowerCase();
+                	gestor.afegirTasca(descripcio, prioritat);
+                	//Li preguntem al usuari si vol tancar el programa o continuar
+                	System.out.print(MSG_13);
+                	surt = sc.nextLine();
+                	//Si posa si guardem i cridem al metode per sorit
+                	if (surt.equalsIgnoreCase("SI")) {
+                    	System.out.println(MSG_14);
+                    	gestor.sortir();   
+                	}
+            	}
+            	case 2 ->{
+                	System.out.print("Numero de la tasca per marcar com completada: ");
+                	int idTasca = sc.nextInt();
+                	gestor.marcarTascaCompletada(idTasca);
+                	//Li preguntem al usuari si vol tancar el programa o continuar
+                	System.out.print(MSG_13);
+                	surt = sc.nextLine();
+                	//Si posa si guardem i cridem al metode per sorit
+                	if (surt.equalsIgnoreCase("SI")) {
+                    	System.out.println(MSG_14);
+                    	gestor.sortir();   
+                	}
+            	}
+            	case 3 ->{
+                	System.out.print("Numero de la tasca per esborrar: ");
+                	int idTasca = sc.nextInt();
+                	gestor.esborrarTasca(idTasca);
+                	//Li preguntem al usuari si vol tancar el programa o continuar
+                	System.out.print(MSG_13);
+                	surt = sc.nextLine();
+                	//Si posa si guardem i cridem al metode per sorit
+                	if (surt.equalsIgnoreCase("SI")) {
+                    	System.out.println(MSG_14);
+                    	gestor.sortir();   
+                	}
+            	}
+            	case 4 ->{
+                	//Cridem al metode per visualitzar les tasques
+                	gestor.mostrarTotesLesTasques();
+                	//Li preguntem al usuari si vol tancar el programa o continuar
+                	System.out.print(MSG_13);
+                	surt = sc.nextLine();
+                	//Si posa si guardem i cridem al metode per sorit
+                	if (surt.equalsIgnoreCase("SI")) {
+                    	System.out.println(MSG_14);
+                    	gestor.sortir();   
+                	}
+            	}
+            	case 5 -> {
+                	System.out.print("Prioritat a mostrar: baixa/mitjana/alta: ");
+                	String prioritat = sc.nextLine().toLowerCase();
+                	gestor.mostrarTasquesPerPrioritat(prioritat);
+            	}
+            	case 6 -> gestor.sortir();
+            	//Si no posa ninguna de les 5 opcions li avisem que ho torni a intentar
+            	default -> System.out.println("Opcio no valida. Torna-ho a intentar.");
+        	}
+    	}
+	}
+}
 
 
