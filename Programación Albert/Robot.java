@@ -70,3 +70,45 @@ public class Robot extends Application {
         finestraPrincipal.setScene(escena);
         finestraPrincipal.show();
     }
+
+    //Metode per moure de cordenades al robot cap endavant o cap endarrera
+    private void moureRobot(String direccio) {
+        switch (direccio) {
+            //Fem un switch case amb if per depenen la opcio on vagi les cordenades s'ajustin a l'opcio correcta del moviment
+            case "endavant":
+                if (this.direccio.equals("Nord")) posY++;
+                else if (this.direccio.equals("Sud")) posY--;
+                else if (this.direccio.equals("Est")) posX++;
+                else if (this.direccio.equals("Oest")) posX--;
+                break;
+            //Ho fem tant per endavant com per enrere
+            case "enrere":
+                if (this.direccio.equals("Nord")) posY--;
+                else if (this.direccio.equals("Sud")) posY++;
+                else if (this.direccio.equals("Est")) posX--;
+                else if (this.direccio.equals("Oest")) posX++;
+                break;
+        }
+        actualitzarEstat();
+    }
+    
+    //Metode per moure de cordenades al robot cap dreta o cap esquerra
+    private void girarRobot(String direccio) {
+        //Fem un switch case amb if per depenen la opcio on vagi les cordenades s'ajustin a l'opcio correcta del moviment
+        switch (direccio) {
+            case "esquerra":
+                if (this.direccio.equals("Nord")) this.direccio = "Oest";
+                else if (this.direccio.equals("Sud")) this.direccio = "Est";
+                else if (this.direccio.equals("Est")) this.direccio = "Nord";
+                else if (this.direccio.equals("Oest")) this.direccio = "Sud";
+                break;
+        //Ho fem tant per dreta com per esquerra 
+            case "dreta":
+                if (this.direccio.equals("Nord")) this.direccio = "Est";
+                else if (this.direccio.equals("Sud")) this.direccio = "Oest";
+                else if (this.direccio.equals("Est")) this.direccio = "Sud";
+                else if (this.direccio.equals("Oest")) this.direccio = "Nord";
+                break;
+        }
+        actualitzarEstat();
+    }
