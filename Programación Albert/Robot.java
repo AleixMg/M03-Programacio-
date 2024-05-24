@@ -165,4 +165,33 @@ public class Robot extends Application {
         }
     }
 
+    //Metode per guardar l'estat, l'usuari no caldra que posi extensio ho fara de forma sola
+    private void guardarEstat(String filename) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(filename + ".txt"))) {
+            out.println(posX);
+            out.println(posY);
+            out.println(direccio);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //Metode per carregar l'estat, l'usuari no caldra que posi extensio ho fara de forma sola
+    private boolean carregarEstat(String filename) {
+        try (BufferedReader in = new BufferedReader(new FileReader(filename + ".txt"))) {
+            posX = Integer.parseInt(in.readLine());
+            posY = Integer.parseInt(in.readLine());
+            direccio = in.readLine();
+            actualitzarEstat();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
+    //El main per poder executar el programa 
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
