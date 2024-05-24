@@ -112,3 +112,14 @@ public class Robot extends Application {
         }
         actualitzarEstat();
     }
+
+    //Metode per actualitzar l'estat cada cop que es fa una accio
+    private void actualitzarEstat() {
+        Label.setText(getEstat());
+    }
+    
+    //Amb el get agafarem les dades de la posicio i la direcció
+    private String getEstat() {
+        return "Cordenades del robot: (eix X:" + posX + ", eix Y:" + posY + ") Direcció: " + direccio;
+    }
+
