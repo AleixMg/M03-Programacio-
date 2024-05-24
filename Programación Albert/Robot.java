@@ -123,3 +123,46 @@ public class Robot extends Application {
         return "Cordenades del robot: (eix X:" + posX + ", eix Y:" + posY + ") Direcció: " + direccio;
     }
 
+    //Fem un metode que mostri una barra per que l'usuari posi el nom del arxiu de com guardar l'estat
+    private void barraGuardarDialog() {
+        // Posem la barra que de forma predeterminada sugerirem de nom estat_del_robot, l'usuari pot escollir el nom que vulgui
+        TextInputDialog dialog = new TextInputDialog("estat_del_robot");
+        //Informació que mostrarem
+        dialog.setTitle("Guardar Estat del robot");
+        dialog.setHeaderText("Guardar l'estat del robot, introdueix el nom de l'arxiu on vols guardar-ho");
+        dialog.setContentText("Introdueix el nom del fitxer(no s'ha de posar cap extensio):");
+
+        dialog.showAndWait().ifPresent(filename -> guardarEstat(filename));
+    }
+
+    //Fem un metode que mostri una barra per que l'usuari posi el nom del arxiu del estat que vulgui carregar
+    private void barraCarregarDialog() {
+        //fem un boolear per comprovar si l'arxiu extisteix o posem en false per a que entri al bucle 
+        boolean success = false;
+        //Amb el while comprovem si l'arxiu existeix
+        while (!success) {
+            TextInputDialog dialog = new TextInputDialog("estat_del_robot");
+            dialog.setTitle("Carregar Estat");
+            dialog.setHeaderText("Carregar l'estat del robot, introdueix el nom de l'arxiu del qual vols carregar les dades");
+            dialog.setContentText("Introdueix el nom del fitxer(no s'ha de posar cap extensio):");
+            
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                String filename = result.get();
+                success = carregarEstat(filename);
+                //Si no existeix mostrara una alesrta de error dient que torni a posar un nom d'un arxiu que existeixi.
+                if (!success) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("El fitxer no s'ha trobat");
+                    alert.setHeaderText("El fitxer no existeix");
+                    alert.setContentText("Introdueix un nom de fitxer existent.");
+                    alert.showAndWait();
+                }
+            } else {
+                // L' usuari cancela la operació
+                break; 
+            }
+        }
+    }
+
+
