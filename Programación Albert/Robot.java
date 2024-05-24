@@ -63,3 +63,10 @@ public class Robot extends Application {
         hboxEstat.setAlignment(Pos.CENTER);
 
         vbox.getChildren().add(hboxEstat);
+
+        // Creem la escena i configurarem la finestra principal
+        Scene escena = new Scene(vbox, 800, 500);
+        finestraPrincipal.setTitle("Control del Robot");
+        finestraPrincipal.setScene(escena);
+        finestraPrincipal.show();
+    }
