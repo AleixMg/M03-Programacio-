@@ -29,3 +29,37 @@ public class Robot extends Application {
         // Botons para guardar i carregar el estat del robot
         Button guardarEstat = new Button("✍(Guardar Estat)");
         Button carregarEstat = new Button("🔄(Carregar Estat)");
+
+        // Creem un label per mostrar l'estat del robot
+        Label = new Label(getEstat());
+
+        // Asignem les accions als botons de direcció, guardar i carregar
+        moureEndavant.setOnAction(e -> moureRobot("endavant"));
+        moureEnrere.setOnAction(e -> moureRobot("enrere"));
+        girarEsquerra.setOnAction(e -> girarRobot("esquerra"));
+        girarDreta.setOnAction(e -> girarRobot("dreta"));
+        guardarEstat.setOnAction(e -> barraGuardarDialog());
+        carregarEstat.setOnAction(e -> barraCarregarDialog());
+
+        // Configurarem el GridPane per la disposició dels botons i mostrar-ho en de forma que cada direcció sigui per un costat
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20));
+        gridPane.setAlignment(Pos.CENTER);
+
+        gridPane.add(moureEndavant, 1, 0); 
+        gridPane.add(girarEsquerra, 0, 1); 
+        gridPane.add(girarDreta, 2, 1); 
+        gridPane.add(moureEnrere, 1, 2); 
+
+        // Configurarem el VBox per l'estat i els botons de guardar i carregar
+        VBox vbox = new VBox(20, Label, gridPane);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setPadding(new Insets(20));
+        vbox.setStyle("-fx-background-color: #ffa1b7; -fx-padding: 20;");
+
+        HBox hboxEstat = new HBox(10, guardarEstat, carregarEstat);
+        hboxEstat.setAlignment(Pos.CENTER);
+
+        vbox.getChildren().add(hboxEstat);
