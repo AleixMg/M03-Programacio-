@@ -62,3 +62,35 @@ class Poesia extends Llibre {
         super(titol, autor, any);
     }
 }
+
+// Fem una altre classe genèrica per a gestionar les llistes de llibres, on farem els metodes per gestionar les llistes
+class LlistaLlibres<T extends Llibre> {
+    private HashMap<String, T> llibres;
+
+    public LlistaLlibres() {
+        llibres = new HashMap<>();
+    }
+
+    //metode per afegir un llibre
+    public void afegirLlibre(T llibre) {
+        llibres.put(llibre.getTitol(), llibre);
+    }
+    
+    //metode per afegir un llibre
+    public void eliminarLlibre(String titol) {
+        llibres.remove(titol);
+    }
+    
+    //metode per buscar un llibre
+    public T buscarLlibre(String titol) {
+        return llibres.get(titol);
+    }
+    
+    //metode per mostrar tots els llibres
+    public void mostrarLlibres() {
+        for (T llibre : llibres.values()) {
+            System.out.println(llibre);
+        }
+    }
+}
+
