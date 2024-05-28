@@ -19,3 +19,27 @@ class Llibre {
         this.any = any;
     }
     //</editor-fold>
+    
+    //Farem uns metodes d'accés a les varibles de l'alumne amb els getters.
+    //<editor-fold defaultstate="collapsed" desc="Getters">
+    public String getTitol() {
+        return titol;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public int getAny() {
+        return any;
+    }
+    //</editor-fold>
+
+    //Fem un toString per convertir la informació en una cade de text, ho seprearem amb tabulacions
+    //<editor-fold defaultstate="collapsed" desc="toString">
+    @Override
+    public String toString() {
+        return "Títol: " + titol + "\tAutor: " + autor + "\tAny: " + any;
+    }
+    //</editor-fold>
+}
