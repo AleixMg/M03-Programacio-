@@ -94,3 +94,126 @@ class LlistaLlibres<T extends Llibre> {
     }
 }
 
+// Fem el main per gestionar els llibres amb el seu menu
+public class Llibres {
+    private static final String MSG_1 = "Tria una de les diferents opcions:";
+    private static final String MSG_2 = "1.Registrar un llibre nou";
+    private static final String MSG_3 = "2.Eliminar un llibre";
+    private static final String MSG_4 = "3.Buscar un llibre per títol";
+    private static final String MSG_5 = "4.Mostrar tots els llibres";
+    private static final String MSG_6 = "5.Sortir del programa";
+    private static final String MSG_7 = "Selecciona l'opció que vulguis:";
+    private static final String MSG_8 = "Gràcies per utilitzar el programa, tingui un bon dia :)";
+    private static final String MSG_9 = "Selecciona primer un Gènere (1. Novela, 2. Ciència-Ficció, 3. Poesia): ";
+    private static final String MSG_10 = "Error en dades posi un número no una lletra ni un altre carcater"; 
+    private static int opcions;
+
+    public static void main(String[] args) {
+        LlistaLlibres<Novela> llistaNoveles = new LlistaLlibres<>();
+        LlistaLlibres<CienciaFiccio> llistaCienciaFiccio = new LlistaLlibres<>();
+        LlistaLlibres<Poesia> llistaPoesia = new LlistaLlibres<>();
+
+        Scanner sc = new Scanner(System.in);
+        // la variable booleana correcte es per validar que s'hi introdueixin números
+        boolean correcte;
+        //Declarem també la variable opcio per a que després amb el switch case pugui escollir l'usuari l'opcio que vulgui.
+        int opcio = 0;
+        
+        //Fem un bucle amb un do while per a que sempre mostri el menu menys quan es pren l'opcio 5
+        do {
+            System.out.println(MSG_1);
+            System.out.println(MSG_2);
+            System.out.println(MSG_3);
+            System.out.println(MSG_4);
+            System.out.println(MSG_5);
+            System.out.println(MSG_6);
+            
+            
+            //Fem un do while de forma que si l'usuari no posa un número i posa qualsevol altre carracter el programa no finalitzara fins que posi un, despres el swicth confirmara si es una acció valida  o no
+            do{
+                System.out.println(MSG_7);    
+                correcte=sc.hasNextInt();
+                if(correcte){
+                    opcio = sc.nextInt();
+                }else{
+                    sc.next();
+                    System.out.println(MSG_10);
+                }
+            }while(!correcte);
+            sc.nextLine(); 
+            
+            //Utilitzem un siwtch case de forma que crudarem un metode depenent de l'opcio escollida
+            switch (opcio) {
+                case 1 -> {
+                    System.out.print(MSG_9);
+                    int genere = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Títol: ");
+                    String titol = sc.nextLine();
+                    System.out.print("Autor: ");
+                    String autor = sc.nextLine();
+                    System.out.print("Any: ");
+                    int any = sc.nextInt();
+                    sc.nextLine();
+                    //Farem un altre swicth case dins per escollir el genere del llibre 
+                    switch (genere) {
+                        case 1 -> llistaNoveles.afegirLlibre(new Novela(titol, autor, any));
+                        case 2 -> llistaCienciaFiccio.afegirLlibre(new CienciaFiccio(titol, autor, any));
+                        case 3 -> llistaPoesia.afegirLlibre(new Poesia(titol, autor, any));
+                        default -> System.out.println("Gènere no vàlid.");
+                    }
+                }
+                case 2 -> {
+                    System.out.print(MSG_9);
+                    int genere = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Títol del llibre a eliminar: ");
+                    String titol = sc.nextLine();
+                    //Farem un altre swicth case dins per escollir el genere del llibre
+                    switch (genere) {
+                        case 1 -> llistaNoveles.eliminarLlibre(titol);
+                        case 2 -> llistaCienciaFiccio.eliminarLlibre(titol);
+                        case 3 -> llistaPoesia.eliminarLlibre(titol);
+                        default -> System.out.println("Gènere no vàlid.");
+                    }
+                }
+                case 3 -> {
+                    System.out.print(MSG_9);
+                    int genere = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Títol del llibre a buscar: ");
+                    String titol = sc.nextLine();
+                    Llibre llibreBuscat = null;
+                    //Farem un altre swicth case dins per escollir el genere del llibre
+                    switch (genere) {
+                        case 1 -> llibreBuscat = llistaNoveles.buscarLlibre(titol);
+                        case 2 -> llibreBuscat = llistaCienciaFiccio.buscarLlibre(titol);
+                        case 3 -> llibreBuscat = llistaPoesia.buscarLlibre(titol);
+                        default -> System.out.println("Gènere no vàlid.");
+                    }
+
+                    if (llibreBuscat != null) {
+                        System.out.println("Llibre trobat: " + llibreBuscat);
+                    } else {
+                        System.out.println("Llibre no trobat.");
+                    }
+                }
+                case 4 -> {
+                    System.out.println("Llibres de Novela:");
+                    llistaNoveles.mostrarLlibres();
+                    System.out.println("Llibres de Ciència-Ficció:");
+                    llistaCienciaFiccio.mostrarLlibres();
+                    System.out.println("Llibres de Poesia:");
+                    llistaPoesia.mostrarLlibres();
+                }
+                case 5 -> {
+                    System.out.println(MSG_8);
+                    opcions = 5;
+                }
+                default -> System.out.println("Opció no vàlida.");
+            }
+
+        } while (opcions != 5);
+    }
+}
+
