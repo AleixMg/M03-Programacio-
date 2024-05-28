@@ -43,3 +43,22 @@ class Llibre {
     }
     //</editor-fold>
 }
+
+// Fem les tres classes específiques per a cada gènere de llibres
+class Novela extends Llibre {
+    public Novela(String titol, String autor, int any) {
+        super(titol, autor, any);
+    }
+}
+
+class CienciaFiccio extends Llibre {
+    public CienciaFiccio(String titol, String autor, int any) {
+        super(titol, autor, any);
+    }
+}
+
+class Poesia extends Llibre {
+    public Poesia(String titol, String autor, int any) {
+        super(titol, autor, any);
+    }
+}
